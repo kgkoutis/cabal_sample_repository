@@ -1,0 +1,67 @@
+cabal-version:      2.4
+name:               mydemohaskell
+version:            0.1.0.0
+
+-- A short (one-line) description of the package.
+-- synopsis:
+
+-- A longer description of the package.
+-- description:
+
+-- A URL where users can report bugs.
+-- bug-reports:
+license:            MIT
+license-file:       LICENSE
+author:             “Konstantinos
+maintainer:         “Konstantinos.Gkoutis-CIC.Netherlands@ibm.com”
+
+-- A copyright notice.
+-- copyright:
+-- category:
+extra-source-files: CHANGELOG.md
+
+common common-all
+    build-depends: 
+       base ^>=4.12.0.0,
+       deepseq >= 1.4.4.0,
+       QuickCheck >= 2.0,
+       cabal-test-quickcheck >= 0.1,
+       Cabal >= 3.0.0.0
+    hs-source-dirs:   app, src
+    default-language: Haskell2010
+    ghc-options:      -Wall
+
+-- cabal run mydemohaskell
+executable mydemohaskell
+    import:           common-all
+    main-is:          Main.hs
+
+    -- Modules included in this executable, other than Main.
+    other-modules:    Lib
+
+    -- LANGUAGE extensions used by modules in this package.
+    -- other-extensions:
+    -- build-depends:    base ^>=4.14.2.0
+    -- hs-source-dirs:   app, src
+    -- default-language: Haskell2010
+   
+
+library
+    import:          common-all
+    exposed-modules: Lib
+    -- build-depends:    base ^>=4.14.2.0
+    -- hs-source-dirs:   app, src
+    -- default-language: Haskell2010
+
+-- cabal run another
+executable another
+    import:           common-all
+    main-is:          Another.hs
+    ghc-options:      -main-is Another
+
+Test-Suite my-tests
+    import:           common-all
+    type:             detailed-0.9
+    hs-source-dirs:   src, test
+    test-module:      Test
+    other-modules:    Lib
